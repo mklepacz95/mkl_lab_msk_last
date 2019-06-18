@@ -8,6 +8,11 @@ public class SampleEvent extends SimEvent {
 
     @Override
     public void stateChange() {
-        System.out.println("Sample event " + name);
+
+        AdditionalSampleEvent additionalSampleEvent = new AdditionalSampleEvent(runTime + 20.0 + random.nextDouble() * 80.0, random.nextInt(10), simMngr, "Utworzony proces przez SampleEvent:" + random.nextInt());
+
+        System.out.println(runTime + ": " + additionalSampleEvent.toString());
+
+        simMngr.registerEvent(additionalSampleEvent);
     }
 }

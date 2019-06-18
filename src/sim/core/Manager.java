@@ -63,11 +63,13 @@ public class Manager {
 	public void nextEvent() {
 		//obsluga koljench zdarzen z kalendarza
 		//ustalenie currentSimTime wg runTime
-		while(simCalendar.getSize() != 0) {
+		while(currentSimTime < stopSimTime) {
 			SimEvent simEvent = simCalendar.getFirstEvent();
-			simEvent.stateChange();
-			currentSimTime += simEvent.getRunTime();
-			unregisterEvent(simEvent);
+			if(simEvent != null) {
+                simEvent.stateChange();
+                currentSimTime = simEvent.getRunTime();
+                unregisterEvent(simEvent);
+            }
 		}
 	}
 
